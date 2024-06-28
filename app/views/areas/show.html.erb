@@ -1,0 +1,52 @@
+<div class="pd-ltr-20 xs-pd-20-10">
+<div class="min-height-200px">
+   <div class="page-header">
+      <div class="row">
+         <div class="col-md-6 col-sm-12">
+            <div class="title" style="display: flex; justify-content: space-between; align-items: center;">
+              <a class="btn btn-primary btn-sm" href="<%= areas_path %>" role="button">Back</a>
+              <h4>Area Name: <span class="text-blue"><%= @area.name %></span></h4>
+              <a class="btn btn-primary btn-sm" href="<%= new_leader_path %>" role="button">New Leader</a>
+            </div>
+         </div>
+      </div>
+   </div>
+  <!-- Responsive tables Start -->
+      <div class="pd-20 card-box mb-30">
+         <div class="clearfix mb-20">
+            <div class="pull-left">
+               <h4 class="text-blue h4">Leaders Details</h4>
+            </div>
+         </div>
+         <div class="table-responsive">
+            <table class="table table-striped">
+               <thead>
+                  <tr>
+                     <th scope="col">Id</th>
+                     <th scope="col">First name</th>
+                     <th scope="col">Last name</th>
+                     <th scope="col">Email</th>
+                     <th scope="col">Phone no</th>
+                     <th scope="col">Actions</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <% @area.leaders.each_with_index do |leader, index| %>
+                     <tr>
+                        <th scope="row"><%= index+1 %></th>
+                        <td><%= leader.first_name %></td>
+                        <td><%= leader.last_name %></td>
+                        <td><%= leader.email %></td>
+                        <td><%= leader.phone_number %></td>
+                        <td><a class="btn btn-primary btn-sm" href="/leaders/<%=leader.id%>" role="button">View</a></td>
+                     </tr>
+                   <% end %>
+               </tbody>
+            </table>
+         </div>
+     </div>
+   <!-- Responsive tables End -->
+   </div>
+</div>
+   
+

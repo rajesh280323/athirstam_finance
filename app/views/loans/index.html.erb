@@ -1,0 +1,72 @@
+<div class="min-height-200px">
+   <div class="page-header">
+      <div class="row">
+         <div class="col-md-6 col-sm-12">
+            <div class="title">
+             <h3 id="page_title">Leader Page</h3>
+            </div>
+         </div>
+         <div class="col-md-6 col-sm-12 text-right">
+            <%= link_to 'New Leader', new_leader_path, class: 'btn btn-primary' %>
+         </div>
+      </div>
+   </div>
+   <div class="card-box mb-30">
+      <div class="pd-20">
+         <h4 class="text-blue h4">List of All Leader</h4>
+         <p class="mb-0">
+         </p>
+      </div>
+      <div class="pb-20">
+         <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer" >
+            <table id="loansTable" class="data-table table stripe hover nowrap dataTable no-footer dtr-inline" style="width:100%">
+               <thead>
+                  <tr>
+                     <th>Id</th>
+                     <th>Loan Amount</th>
+                     <th>ROI</th>
+                     <th>Tenure weeks</th>
+                     <th>Disbursement Amount</th>
+                     <th>Disbursement Date</th>
+                     <th>Weekly Collection Amount</th>
+                     <th>Weekly Collection Date</th>
+                     <th>First EWI Date</th>
+                     <th>Loan Closing Date</th>
+                     <th>Actions</th>
+
+                  </tr>
+               </thead>
+               <tbody></tbody>
+            </table>
+         </div>
+      </div>
+   </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    $('.left-side-loans').addClass('active');
+
+    $('#loansTable').DataTable({
+      "serverSide": true,
+      "scrollY": "600px", 
+      "scrollX": true,
+      "ajax": "<%= loans_path(format: :json) %>",
+      "columns": [
+         { data: 'id' },
+         { data: 'loan_amount'},
+         { data: 'roi'},
+         { data: 'tenure_weeks'},
+         { data: 'disbursement_amount'},
+         { data: 'disbursement_date'},
+         { data: 'weekly_collection_amount'},
+         { data: 'weekly_collection_date'},
+         { data: 'first_ewi_date'},
+         { data: 'loan_closing_date'},
+         { data: 'actions', searchable: false, orderable: false }
+       
+      ]
+    });
+  });
+</script>
+ 

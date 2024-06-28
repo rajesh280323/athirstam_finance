@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AcademicMedSearch</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <%= stylesheet_link_tag "before_login.css" %>
+
+    <script src="/vendors/scripts/core.js"></script>
+    <script src="/vendors/scripts/script.min.js"></script>
+    <script src="/vendors/scripts/process.js"></script>
+    <script src="/vendors/scripts/layout-settings.js"></script>
+    <script src="/src/plugins/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="/src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/src/plugins/datatables/js/dataTables.responsive.min.js"></script>
+    <script src="/src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
+    <!-- Site favicon -->
+    <%# <link rel="apple-touch-icon" sizes="180x180" href="/vendors/images/apple-touch-icon.png"/> %>
+    <%# <link rel="icon" type="image/png" sizes="32x32" href="/vendors/images/favicon-32x32.png"/> %>
+    <%# <link rel="icon" type="image/png" sizes="16x16" href="/vendors/images/favicon-16x16.png" %>
+
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/vendors/styles/core.css" />
+    <link rel="stylesheet" type="text/css" href="/vendors/styles/icon-font.min.css" />
+    <link rel="stylesheet" type="text/css" href="/src/plugins/datatables/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" type="text/css" href="/src/plugins/datatables/css/responsive.bootstrap4.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/vendors/styles/style.css" />
+  </head>
+
+  <body class="header-white sidebar-light">
+    <%# <div class="pre-loader">
+      <div class="pre-loader-box">
+        <div class="loader-logo">
+          <img src="https://academic-med.com/wp-content/themes/academic-med/resources/images/logo-white.svg" alt="" />
+        </div>
+        <div class="loader-progress" id="progress_div">
+          <div class="bar" id="bar1"></div>
+        </div>
+        <div class="percent" id="percent11">0%</div>
+        <div class="loading-text">Loading...</div>
+      </div>
+    </div> %>
+    <%if current_employee%>
+        <%= render '/layouts/after_login_header' %>
+        <%= render '/layouts/left_sidebar' %>
+        <div class="mobile-menu-overlay"></div>
+        <div class="main-container">
+            <% flash.each do |key, value| %>
+              <div id="full_alert" style="">
+              <div class="alert alert-<%= key %>" style="border-radius: 5px;">
+              <h2 style="text-align: center; font-size: 17px; padding-top: 5px;padding-bottom: 5px;"><%= value %></h2>
+              </div>
+              </div>
+            <% end %>
+            <%= yield %>
+            <%# <div class="footer-wrap pd-20 mb-20 card-box">
+               Ror
+              <a href="" target="_blank"></a>
+          </div> %>
+        </div>
+    <%else%>
+        <%= render '/layouts/before_login_header' %>
+          <% if flash[:alert] %>
+            <div class="alert alert-danger" style="text-align:center; margin-bottom: auto;">
+              <%= flash[:alert] %>
+            </div>
+          <% elsif flash[:notice] %>
+            <div class="alert alert-success" style="text-align:center;margin-bottom: auto;">
+              <%= flash[:notice] %>
+            </div>
+          <% end %>
+         <%= yield %>
+    <%end%>
+  </body>
+</html>
+
+<script type="text/javascript">
+   
+    <%# (function($) { %>
+    $(document).ready(function() {
+      setTimeout(function() {
+    $('#full_alert').fadeOut('slow');
+    }, 4000);
+    <%# }); %>
+    <%# })(jQuery); %>
+   
+   setTimeout(function() {
+    var alertElement = document.getElementsByClassName("alert")[0];
+    if (alertElement) {
+    alertElement.remove();
+    }
+    }, 3000);
+
+    <%# $(document).ready(function() { %>
+    <%# $('form').parsley(); %>
+    });
+</script>

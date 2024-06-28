@@ -1,0 +1,62 @@
+<div class="min-height-200px">
+   <div class="page-header">
+      <div class="row">
+         <div class="col-md-6 col-sm-12">
+            <div class="title">
+             <h3 id="page_title">Leader Page</h3>
+            </div>
+         </div>
+         <div class="col-md-6 col-sm-12 text-right">
+            <%= link_to 'New Product', new_leader_path, class: 'btn btn-primary' %>
+         </div>
+      </div>
+   </div>
+   <div class="card-box mb-30">
+      <div class="pd-20">
+         <h4 class="text-blue h4">List of All Leader</h4>
+         <p class="mb-0">
+         </p>
+      </div>
+      <div class="pb-20">
+         <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer" >
+            <table id="leadersTable" class="data-table table stripe hover nowrap dataTable no-footer dtr-inline" style="width:100%">
+               <thead>
+                  <tr>
+                     <th>Id</th>
+                     <th>First name</th>
+                     <th>Last name</th>
+                     <th>Email</th>
+                     <th>Phone no</th>
+                     <th>Actions</th>
+
+                  </tr>
+               </thead>
+               <tbody></tbody>
+            </table>
+         </div>
+      </div>
+   </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    $('.left-side-leaders').addClass('active');
+
+    $('#leadersTable').DataTable({
+      "serverSide": true,
+      "scrollY": "600px", 
+      "scrollX": true,
+      "ajax": "<%= leaders_path(format: :json) %>",
+      "columns": [
+         { data: 'id' },
+         { data: 'first_name' },
+         { data: 'last_name' },
+         { data: 'email' },
+         { data: 'phone_number' },
+         { data: 'actions', searchable: false, orderable: false }
+       
+      ]
+    });
+  });
+</script>
+ 

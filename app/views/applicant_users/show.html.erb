@@ -1,0 +1,48 @@
+<div class="pd-ltr-20 xs-pd-20-10">
+<div class="min-height-200px">
+   <div class="page-header">
+      <div class="row">
+         <div class="col-md-6 col-sm-12">
+            <div class="title" style="display: flex; justify-content: space-between; align-items: center;">
+              <a class="btn btn-primary btn-sm" href="<%= areas_path %>" role="button">Back</a>
+            </div>
+         </div>
+      </div>
+   </div>
+  <!-- Responsive tables Start -->
+      <div class="pd-20 card-box mb-30">
+         <div class="clearfix mb-20">
+            <div class="pull-left">
+               <h4 class="text-blue h4">Applicant Users Details</h4>
+            </div>
+         </div>
+         <div class="table-responsive">
+            <table class="table table-striped">
+               <thead>
+                  <tr>
+                     <th scope="col">Id</th>
+                     <th scope="col">First name</th>
+                     <th scope="col">Last name</th>
+                     <th scope="col">Email</th>
+                     <th scope="col">Phone no</th>
+                     <th scope="col">Actions</th>
+                  </tr>
+               </thead>
+               <tbody>
+                     <tr>
+                        <th scope="row"><%= @applicant_user.id %></th>
+                        <td><%= @applicant_user.first_name %></td>
+                        <td><%= @applicant_user.last_name %></td>
+                        <td><%= @applicant_user.email %></td>
+                        <td><%= @applicant_user.phone_number %></td>
+                        <td><a class="btn btn-primary btn-sm" href="/applicant_users/<%=@applicant_user.id%>" role="button">View</a></td>
+                     </tr>
+               </tbody>
+            </table>
+         </div>
+     </div>
+   <!-- Responsive tables End -->
+   </div>
+</div>
+   
+
