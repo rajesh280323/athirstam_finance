@@ -5,15 +5,26 @@
    <div class="page-header">
       <div class="row">
          <div class="col-md-6 col-sm-12">
-            <div class="title">
+            <div class="title" style="display: flex; justify-content: space-between; align-items: center;">
              <h3 id="page_title" class="text-blue">Area Page</h3>
+              <a class="btn btn-primary btn-sm" href="<%= new_area_path %>" role="button">New Area</a>
+            </div>
+         </div>
+      </div>
+   </div>
+   <%# <div class="page-header">
+      <div class="row">
+         <div class="col-md-6 col-sm-12">
+            <div class="title">
+             <h3 id="pag
+             e_title" class="text-blue">Area Page</h3>
             </div>
          </div>
          <div class="col-md-6 col-sm-12 text-right">
             <%= link_to 'New Area', new_area_path, class: 'btn btn-primary' %>
-         </div>
-      </div>
-   </div>
+         <%# </div> %>
+      <%# </div> %>
+   <%# </div> %>
    <div class="card-box mb-30">
       <div class="pd-20">
          <h4 class="h4">List of All Area</h4>

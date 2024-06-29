@@ -4,9 +4,9 @@
       <div class="row">
          <div class="col-md-6 col-sm-12">
             <div class="title" style="display: flex; justify-content: space-between; align-items: center;">
-              <a class="btn btn-primary btn-sm" href="<%= areas_path %>" role="button">Back</a>
               <h4>Area Name: <span class="text-blue"><%= @area.name %></span></h4>
-              <a class="btn btn-primary btn-sm" href="<%= new_leader_path %>" role="button">New Leader</a>
+               <%= link_to areas_path, class: "btn btn-primary btn-sm" do %>Back<% end %>
+
             </div>
          </div>
       </div>
@@ -16,7 +16,10 @@
          <div class="clearfix mb-20">
             <div class="pull-left">
                <h4 class="text-blue h4">Leaders Details</h4>
+
             </div>
+              <a class="btn btn-primary btn-sm pull-right" href="<%= new_leader_path %>" role="button">New Leader</a>
+            
          </div>
          <div class="table-responsive">
             <table class="table table-striped">
@@ -50,3 +53,8 @@
 </div>
    
 
+<script>
+  $(document).ready(function() {
+    $('.left-side-areas').addClass('active');
+  });
+</script>

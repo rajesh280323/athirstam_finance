@@ -13,14 +13,16 @@ class LeadersController < ApplicationController
   end
 
   def new
+    @title = "New Leader"
     @leader = Leader.new
   end
 
   def edit
+    @title = "Edit Leader"
+
   end
 
   def create
-    puts "-------------------------------"
     @leader = Leader.new(leader_params)
     respond_to do |format|
       if @leader.save

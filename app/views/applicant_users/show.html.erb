@@ -1,19 +1,66 @@
 <div class="pd-ltr-20 xs-pd-20-10">
 <div class="min-height-200px">
-   <div class="page-header">
+
+    <div class="page-header">
       <div class="row">
          <div class="col-md-6 col-sm-12">
             <div class="title" style="display: flex; justify-content: space-between; align-items: center;">
-              <a class="btn btn-primary btn-sm" href="<%= areas_path %>" role="button">Back</a>
+              <h4><span class="text-blue h4">Applicant User Page</span></h4>
+              <a class="btn btn-primary btn-sm" href="<%= new_applicant_user_path(id: @applicant_user.id) %>" role="button">New Loan</a>
             </div>
          </div>
       </div>
    </div>
+
+
   <!-- Responsive tables Start -->
       <div class="pd-20 card-box mb-30">
          <div class="clearfix mb-20">
+           <nav aria-label="breadcrumb" role="navigation" style="width: 419px;">
+               <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+                     <a href="/home">Dashboard</a>
+                  </li>
+                  <li class="breadcrumb-item">
+                     <a href="/areas">Area</a>
+                  </li>
+                  <li class="breadcrumb-item">
+                     <a href="/leaders">Leader</a>
+                  </li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                     New Applicant User
+                  </li>
+               </ol>
+            </nav>
             <div class="pull-left">
-               <h4 class="text-blue h4">Applicant Users Details</h4>
+               <h5 class="text-blue h4">Applicant User Details</h5>
+            </div>
+         </div>
+      
+         <div class="form-group row">
+           <label class="col-md-2"  style="white-space: pre;">First name    : <span class="" >  <%= @applicant_user.first_name %></span></label>
+         </div>
+         <div class="form-group row">
+           <label class="col-md-2"  style="white-space: pre;">Last name    : <span class="" >  <%= @applicant_user.last_name %></span></label>
+         </div>
+         <div class="form-group row">
+           <label class="col-md-2"  style="white-space: pre;">Email             : <span class="" >  <%= @applicant_user.email %></span></label>
+         </div>
+         <div class="form-group row">
+           <label class="col-md-2"  style="white-space: pre;">Phone no      : <span class="" >  <%= @applicant_user.phone_number %></span></label>
+         </div>
+         <div class="form-group row">
+           <label class="col-md-2"  style="white-space: pre;">Area Name   : <span class="" >  <%= @applicant_user.area %></span></label>
+         </div>
+
+     </div>
+   <!-- Responsive tables End -->
+
+   <!-- Responsive tables Start -->
+      <div class="pd-20 card-box mb-30">
+         <div class="clearfix mb-20">
+            <div class="pull-left">
+               <h4 class="text-blue h4">Loan Details</h4>
             </div>
          </div>
          <div class="table-responsive">
@@ -29,14 +76,37 @@
                   </tr>
                </thead>
                <tbody>
-                     <tr>
-                        <th scope="row"><%= @applicant_user.id %></th>
-                        <td><%= @applicant_user.first_name %></td>
-                        <td><%= @applicant_user.last_name %></td>
-                        <td><%= @applicant_user.email %></td>
-                        <td><%= @applicant_user.phone_number %></td>
-                        <td><a class="btn btn-primary btn-sm" href="/applicant_users/<%=@applicant_user.id%>" role="button">View</a></td>
-                     </tr>
+                  <% @applicant_user.loans.each_with_index do |a_user, index| %>
+                     <div class="form-group row">
+                       <label class="col-md-2"  style="white-space: pre;">Loan Amount    : <span class="" >  <%= a_user.loan_amount %></span></label>
+                     </div>
+                     <div class="form-group row">
+                       <label class="col-md-2"  style="white-space: pre;">ROI         : <span class="" >  <%= a_user.roi %></span></label>
+                     </div>
+                     <div class="form-group row">
+                       <label class="col-md-2"  style="white-space: pre;">Tenure Weeks                 : <span class="" >  <%= a_user.tenure_weeks %></span></label>
+                     </div>
+                     <div class="form-group row">
+                       <label class="col-md-2"  style="white-space: pre;">Disbursement Amount        : <span class="" >  <%= a_user.disbursement_amount %></span></label>
+                     </div>
+                     <div class="form-group row">
+                       <label class="col-md-2"  style="white-space: pre;">Disbursement Date        : <span class="" >  <%= a_user.disbursement_date %></span></label>
+                     </div>
+                     <div class="form-group row">
+                       <label class="col-md-2"  style="white-space: pre;">Weekly Collection Amount      : <span class="" >  <%= a_user.weekly_collection_amount %></span></label>
+                     </div>
+                     <div class="form-group row">
+                       <label class="col-md-2"  style="white-space: pre;">Weekly Collection Date  : <span class="" >  <%= a_user.weekly_collection_date %></span></label>
+                     </div>
+                     <div class="form-group row">
+                       <label class="col-md-2"  style="white-space: pre;">First EWI Date     : <span class="" >  <%= a_user.first_ewi_date %></span></label>
+                     </div>
+                     <div class="form-group row">
+                       <label class="col-md-2"  style="white-space: pre;">Loan Closing Date   : <span class="" >  <%= a_user.loan_closing_date %></span></label>
+                     </div>
+
+       
+                   <% end %>
                </tbody>
             </table>
          </div>
@@ -46,3 +116,8 @@
 </div>
    
 
+<script>
+  $(document).ready(function() {
+    $('.left-side-applicant-users').addClass('active');
+  });
+</script>

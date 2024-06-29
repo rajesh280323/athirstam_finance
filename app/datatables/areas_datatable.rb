@@ -22,7 +22,7 @@ extend Forwardable
           id: record.id,
           # name: link_to("<span class='highlight' style='color:blue'>#{record.name}</span>".html_safe, "/areas/#{record.id}", class: 'anchor-class'),
           name: record.name,
-          actions: link_to('View', area_path(record), class: "btn btn-primary btn-sm") + " " + link_to('Edit', edit_area_path(record), class: "btn btn-info btn-sm") + " " + link_to("Delete", area_path(record), class: "btn btn-danger btn-sm", method: :delete, data: { confirm: "Are you sure?" })
+          actions: link_to('View', area_path(record), class: "btn btn-primary btn-sm") + " " + link_to('Edit', edit_area_path(record), class: "btn btn-info btn-sm")
         }
     end
   end

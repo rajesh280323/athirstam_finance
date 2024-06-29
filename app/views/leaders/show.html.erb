@@ -1,30 +1,17 @@
 <div class="pd-ltr-20 xs-pd-20-10">
 <div class="min-height-200px">
-   <div class="page-header">
+
+    <div class="page-header">
       <div class="row">
          <div class="col-md-6 col-sm-12">
-            <div class="title">
-               <h4>New Leader</h4>
+            <div class="title" style="display: flex; justify-content: space-between; align-items: center;">
+              <h4><span class="text-blue h4">Leader Page</span></h4>
+              <a class="btn btn-primary btn-sm" href="<%= new_applicant_user_path(id: @leader.id) %>" role="button">New Applicant User</a>
             </div>
-            <nav aria-label="breadcrumb" role="navigation">
-               <ol class="breadcrumb">
-                  <li class="breadcrumb-item">
-                     <a href="/dashboard">Dashboard</a>
-                  </li>
-                  <li class="breadcrumb-item">
-                     <a href="/areas">Area</a>
-                  </li>
-                  <li class="breadcrumb-item">
-                     <a href="/applicant_users">Applicant user</a>
-                  </li>
-                  <li class="breadcrumb-item active" aria-current="page">
-                     New Leader
-                  </li>
-               </ol>
-            </nav>
          </div>
       </div>
    </div>
+
 
   <!-- Responsive tables Start -->
       <div class="pd-20 card-box mb-30">
@@ -32,59 +19,37 @@
             <nav aria-label="breadcrumb" role="navigation">
                <ol class="breadcrumb">
                   <li class="breadcrumb-item">
-                     <a href="/dashboard">Dashboard</a>
+                     <a href="/home">Dashboard</a>
                   </li>
                   <li class="breadcrumb-item">
                      <a href="/areas">Area</a>
                   </li>
-                  <li class="breadcrumb-item">
-                     <a href="/applicant_users">Applicant user</a>
-                  </li>
                   <li class="breadcrumb-item active" aria-current="page">
-                     New Leader
+                     Leader Page
                   </li>
                </ol>
             </nav>
-
             <div class="pull-left">
-               <h4 class="text-blue h4">Leader Details</h4>
+               <h5 class="text-blue h4">Leader Details</h5>
             </div>
          </div>
+      
          <div class="form-group row">
-  <label class="col-md-2">First name</label>
-  <%# <div class="col-sm-12 col-md-10"> %>
-    <span class="">:   <%= @leader.first_name %></span>
-  <%# </div> %>
-</div>
-<div class="form-group row">
-  <label class="col-md-2">Last name</label>
-  <%# <div class="col-sm-12 col-md-10"> %>
-    <span class="">:   <%= @leader.last_name %></span>
-  <%# </div> %>
-</div>
-<div class="form-group row">
-  <label class="col-md-2">Email</label>
-  <%# <div class="col-sm-12 col-md-10"> %>
-    <span class="">:   <%= @leader.email %></span>
-  <%# </div> %>
-</div>
-<div class="form-group row">
-  <label class="col-md-2">Phone no</label>
-  <%# <div class="col-sm-12 col-md-10"> %>
-    <span class="">:   <%= @leader.phone_number %></span>
-  <%# </div> %>
-</div>
-<div class="form-group row">
-  <label class="col-md-2">Area Name</label>
-  <%# <div class="col-sm-12 col-md-10"> %>
-    <span class="">:   <%= @leader.area.name %></span>
-  <%# </div> %>
-</div>
+           <label class="col-md-2"  style="white-space: pre;">First name    : <span class="" >  <%= @leader.first_name %></span></label>
+         </div>
+         <div class="form-group row">
+           <label class="col-md-2"  style="white-space: pre;">Last name    : <span class="" >  <%= @leader.last_name %></span></label>
+         </div>
+         <div class="form-group row">
+           <label class="col-md-2"  style="white-space: pre;">Email             : <span class="" >  <%= @leader.email %></span></label>
+         </div>
+         <div class="form-group row">
+           <label class="col-md-2"  style="white-space: pre;">Phone no      : <span class="" >  <%= @leader.phone_number %></span></label>
+         </div>
+         <div class="form-group row">
+           <label class="col-md-2"  style="white-space: pre;">Area Name   : <span class="" >  <%= @leader.area.name %></span></label>
+         </div>
 
-
-
-                     
-        
      </div>
    <!-- Responsive tables End -->
 
@@ -127,3 +92,8 @@
 </div>
    
 
+<script>
+  $(document).ready(function() {
+    $('.left-side-leaders').addClass('active');
+  });
+</script>
