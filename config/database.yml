@@ -24,7 +24,7 @@ test:
   database: mm_test
   pool: 5
   username: root
-  password: 
+  password: "Axegh3kAJyDLaRuBemecis"
   host: 127.0.0.1
 
 production:
@@ -33,6 +33,6 @@ production:
   reconnect: false
   database: athirstam_finance
   pool: 5
-  username: 
-  password: 
+  username: "athirstam_finance"
+  password: "Axes*g=h3dkAJyDd3La2RuBge4mecis"
   host: 127.0.0.1
