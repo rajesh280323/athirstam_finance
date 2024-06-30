@@ -30,8 +30,7 @@ extend Forwardable
         email: record.email,
         phone_number: record.phone_number,
         aadhar_number: record.aadhar_number,
-         actions: link_to('View', "/applicant_users/#{record.id}")+ " " +
-         link_to('Edit', "/applicant_users/#{record.id}/edit")
+        actions: link_to('View', "/applicant_users/#{record.id}", class: "btn btn-primary btn-sm") + " " + link_to('Edit', "/applicant_users/#{record.id}/edit", class: "btn btn-info btn-sm")
        }
      end
   end

@@ -1,5 +1,5 @@
 class LeadersController < ApplicationController
-  before_action :set_leader, only: [:show, :edit, :update, :destroy]
+  before_action :set_leader, only: [:show, :edit, :update]
 
   def index
 	respond_to do |format|
@@ -8,18 +8,20 @@ class LeadersController < ApplicationController
 	end
   end
  
-  def show
+  def show  
     @leader = Leader.find_by(id: params[:id])
+    @leader_loan = @leader.loans.first
   end
 
   def new
     @title = "New Leader"
     @leader = Leader.new
+    @properties = ["Rental","Owned","Leased"]
   end
 
   def edit
     @title = "Edit Leader"
-
+    @properties = ["Rental","Owned","Leased"]
   end
 
   def create
@@ -49,13 +51,13 @@ class LeadersController < ApplicationController
     end
   end
 
-  def destroy
-    @leader.destroy
-    respond_to do |format|
-      format.html { redirect_to leaders_url, notice: 'Leader was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+  # def destroy
+  #   @leader.destroy
+  #   respond_to do |format|
+  #     format.html { redirect_to leaders_url, notice: 'Leader was successfully destroyed.' }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   private
 
@@ -64,6 +66,6 @@ class LeadersController < ApplicationController
   end
 
   def leader_params
-    params.require(:leader).permit(:first_name, :last_name, :email, :phone_number, :aadhar_number, :area_id)
+    params.require(:leader).permit(:first_name, :last_name, :email, :phone_number, :aadhar_number, :area_id, :property)
   end
 end

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+     <%#= importmap %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <%= stylesheet_link_tag "before_login.css" %>
@@ -63,6 +63,7 @@
               </div>
             <% end %>
             <%= yield %>
+            <%= javascript_importmap_tags %>
             <%# <div class="footer-wrap pd-20 mb-20 card-box">
                Ror
               <a href="" target="_blank"></a>

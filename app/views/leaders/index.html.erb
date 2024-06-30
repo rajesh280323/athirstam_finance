@@ -3,11 +3,13 @@
       <div class="row">
          <div class="col-md-6 col-sm-12">
             <div class="title">
-             <h3 id="page_title">Leader Page</h3>
+             <h3 id="page_title">Leader Dashboard</h3>
             </div>
+            <%= link_to "Download PDF", leaders_path(1, format: :pdf), class: "btn btn-primary" %>
+
          </div>
          <div class="col-md-6 col-sm-12 text-right">
-            <%= link_to 'New Product', new_leader_path, class: 'btn btn-primary' %>
+            <%= link_to 'New Leader', new_leader_path, class: 'btn btn-primary' %>
          </div>
       </div>
    </div>

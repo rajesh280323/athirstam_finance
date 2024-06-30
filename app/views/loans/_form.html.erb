@@ -32,6 +32,7 @@
 				<h4 class="text-blue h4">Loan Application</h4>
 				<p class="mb-30"></p>
 			</div>
+			<%= link_to 'Back', :back, class: 'btn btn-primary btn-sm pull-right' %>
 		</div>
         <%= form_for @loan, html: { class: "form-horizontal form-label-left", id: "area_form", "data-parsley-validate": "" } do |f| %>
 		<form action="<% new_loan_path %>">
@@ -41,6 +42,9 @@
                   <%= f.text_field :loan_amount, class: "form-control", placeholder:"10000", required: true %>
 				</div>
 			</div>
+   <%=  puts "----------------11--------#{@leader_id}" %>
+
+            
 
 			<div class="form-group row">
 				<label class="col-sm-12 col-md-2 col-form-label">ROI</label>
@@ -101,18 +105,20 @@
 				</div>
 			</div>
 			
-			<%# <div class="form-group row">
-				<label class="col-sm-12 col-md-2 col-form-label">Area</label>
+			<div class="form-group row">
+				<label class="col-sm-12 col-md-2 col-form-label">Leader Name</label>
 				<div class="col-sm-12 col-md-10">
-					<select class="custom-select col-12">
-						<option selected="">Choose Area</option> %>
-						<%# Area.all.each do |area| %>
-						<%# <option value="<%#= area.name"><%#= area.name %>
-							<%# </option> %>
-						<%# end %>
-					<%# </select>
+					<% if @leader_id.present? %>
+					<%= f.collection_select :leader_id, Leader.all, :id, :first_name, { selected: @leader_id, prompt: "Select a Leader" }, { class: "form-control", required: true, disabled: true } %>
+					<%= f.hidden_field :leader_id, value: @leader_id %>
+					<% else @au_id.present? %>
+					<%= f.collection_select :applicant_user_id, ApplicantUser.all, :id, :first_name, {selected: @au_id, prompt: "Select a ApplicantUser" }, { class: "form-control", required: true, disabled: true } %>
+            	<%= f.hidden_field :applicant_user_id, value: @au_id %>
+					<% end %>
 				</div>
-			</div>  %>
+			</div> 
+
+
 
 			<div class="clearfix">
 			<div class="pull-left">

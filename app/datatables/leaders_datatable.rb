@@ -30,7 +30,8 @@ extend Forwardable
         email: record.email,
         phone_number: record.phone_number,
         aadhar_number: record.aadhar_number,
-        actions: link_to('View', leader_path(record), class: "btn btn-primary btn-sm") + " " + link_to('Edit', edit_leader_path(record), class: "btn btn-info btn-sm") + " " + link_to("Delete", leader_path(record), class: "btn btn-danger btn-sm", method: :delete, data: { confirm: "Are you sure?" })
+        actions: link_to('View', leader_path(record), class: "btn btn-primary btn-sm") + " " + link_to('Edit', edit_leader_path(record), class: "btn btn-info btn-sm")
+         # + " " + link_to("Delete", leader_path(record), class: "btn btn-danger btn-sm", method: :delete, data: { confirm: "Are you sure?" })
          # actions: link_to('View', "/leaders/#{record.id}")+ " " +
          # link_to('Edit', "/leaders/#{record.id}/edit")
        }

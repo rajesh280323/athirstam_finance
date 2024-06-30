@@ -6,7 +6,7 @@
          <div class="col-md-6 col-sm-12">
             <div class="title" style="display: flex; justify-content: space-between; align-items: center;">
               <h4><span class="text-blue h4">Applicant User Page</span></h4>
-              <a class="btn btn-primary btn-sm" href="<%= new_applicant_user_path(id: @applicant_user.id) %>" role="button">New Loan</a>
+              <a class="btn btn-primary btn-sm" href="<%= new_loan_path(au_id: @applicant_user.id) %>" role="button">New Loan</a>
             </div>
          </div>
       </div>
@@ -38,80 +38,68 @@
          </div>
       
          <div class="form-group row">
-           <label class="col-md-2"  style="white-space: pre;">First name    : <span class="" >  <%= @applicant_user.first_name %></span></label>
+           <label class="col-md-2"  style="white-space: pre;">First name           : <span class="" >  <%= @applicant_user.first_name %></span></label>
          </div>
          <div class="form-group row">
-           <label class="col-md-2"  style="white-space: pre;">Last name    : <span class="" >  <%= @applicant_user.last_name %></span></label>
+           <label class="col-md-2"  style="white-space: pre;">Last name            : <span class="" >  <%= @applicant_user.last_name %></span></label>
          </div>
          <div class="form-group row">
-           <label class="col-md-2"  style="white-space: pre;">Email             : <span class="" >  <%= @applicant_user.email %></span></label>
+           <label class="col-md-2"  style="white-space: pre;">Email                     : <span class="" >  <%= @applicant_user.email %></span></label>
          </div>
          <div class="form-group row">
-           <label class="col-md-2"  style="white-space: pre;">Phone no      : <span class="" >  <%= @applicant_user.phone_number %></span></label>
+           <label class="col-md-2"  style="white-space: pre;">Phone no              : <span class="" >  <%= @applicant_user.phone_number %></span></label>
          </div>
          <div class="form-group row">
-           <label class="col-md-2"  style="white-space: pre;">Area Name   : <span class="" >  <%= @applicant_user.area %></span></label>
+           <label class="col-md-2"  style="white-space: pre;">Area Name           : <span class="" >  <%= @applicant_user.area %></span></label>
+         </div>
+         <div class="form-group row">
+           <label class="col-md-2"  style="white-space: pre;">Property Status   : <span class="" >  <%= @applicant_user.property %></span></label>
          </div>
 
      </div>
    <!-- Responsive tables End -->
 
    <!-- Responsive tables Start -->
+<% if @a_user.present? %>
       <div class="pd-20 card-box mb-30">
          <div class="clearfix mb-20">
             <div class="pull-left">
-               <h4 class="text-blue h4">Loan Details</h4>
+               <h4 class="text-blue h4">Leader Loan Details</h4>
             </div>
          </div>
-         <div class="table-responsive">
-            <table class="table table-striped">
-               <thead>
-                  <tr>
-                     <th scope="col">Id</th>
-                     <th scope="col">First name</th>
-                     <th scope="col">Last name</th>
-                     <th scope="col">Email</th>
-                     <th scope="col">Phone no</th>
-                     <th scope="col">Actions</th>
-                  </tr>
-               </thead>
-               <tbody>
-                  <% @applicant_user.loans.each_with_index do |a_user, index| %>
-                     <div class="form-group row">
-                       <label class="col-md-2"  style="white-space: pre;">Loan Amount    : <span class="" >  <%= a_user.loan_amount %></span></label>
-                     </div>
-                     <div class="form-group row">
-                       <label class="col-md-2"  style="white-space: pre;">ROI         : <span class="" >  <%= a_user.roi %></span></label>
-                     </div>
-                     <div class="form-group row">
-                       <label class="col-md-2"  style="white-space: pre;">Tenure Weeks                 : <span class="" >  <%= a_user.tenure_weeks %></span></label>
-                     </div>
-                     <div class="form-group row">
-                       <label class="col-md-2"  style="white-space: pre;">Disbursement Amount        : <span class="" >  <%= a_user.disbursement_amount %></span></label>
-                     </div>
-                     <div class="form-group row">
-                       <label class="col-md-2"  style="white-space: pre;">Disbursement Date        : <span class="" >  <%= a_user.disbursement_date %></span></label>
-                     </div>
-                     <div class="form-group row">
-                       <label class="col-md-2"  style="white-space: pre;">Weekly Collection Amount      : <span class="" >  <%= a_user.weekly_collection_amount %></span></label>
-                     </div>
-                     <div class="form-group row">
-                       <label class="col-md-2"  style="white-space: pre;">Weekly Collection Date  : <span class="" >  <%= a_user.weekly_collection_date %></span></label>
-                     </div>
-                     <div class="form-group row">
-                       <label class="col-md-2"  style="white-space: pre;">First EWI Date     : <span class="" >  <%= a_user.first_ewi_date %></span></label>
-                     </div>
-                     <div class="form-group row">
-                       <label class="col-md-2"  style="white-space: pre;">Loan Closing Date   : <span class="" >  <%= a_user.loan_closing_date %></span></label>
-                     </div>
-
-       
-                   <% end %>
-               </tbody>
-            </table>
-         </div>
+         <%# @@a_user.each_with_index do |leader, index| %>
+      <div class="form-group row">
+        <label class="col-md-2"  style="white-space: pre;">Loan Amount                         : <span class="" >  <%= @a_user.loan_amount %></span></label>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-2"  style="white-space: pre;">ROI                                           : <span class="" >  <%= @a_user.roi %></span></label>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-2"  style="white-space: pre;">Tenure Weeks                        : <span class="" >  <%= @a_user.tenure_weeks %></span></label>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-2"  style="white-space: pre;">Disbursement Amount         : <span class="" >  <%= @a_user.disbursement_amount %></span></label>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-2"  style="white-space: pre;">Disbursement Date               : <span class="" >  <%= @a_user.disbursement_date %></span></label>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-2"  style="white-space: pre;">Weekly Collection Amount  : <span class="" >  <%= @a_user.weekly_collection_amount %></span></label>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-2"  style="white-space: pre;">Weekly Collection Date        : <span class="" >  <%= @a_user.weekly_collection_date %></span></label>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-2"  style="white-space: pre;">First EWI Date                        : <span class="" >  <%= @a_user.first_ewi_date %></span></label>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-2"  style="white-space: pre;">Loan Closing Date                 : <span class="" >  <%= @a_user.loan_closing_date %></span></label>
+      </div>
      </div>
+<% end %>
    <!-- Responsive tables End -->
+
+ 
    </div>
 </div>
    

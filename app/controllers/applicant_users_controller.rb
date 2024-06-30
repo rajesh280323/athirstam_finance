@@ -10,13 +10,19 @@ class ApplicantUsersController < ApplicationController
 
   def show
     @applicant_user = ApplicantUser.find_by(id: params[:id])
+    @a_user = @applicant_user.loans.first
   end
 
   def new
+    @required = "New"
+    @properties = ["Rental","Owned","Leased"]
+    @leader = Leader.find_by(id: params[:leader_id])
     @applicant_user = ApplicantUser.new
   end
 
   def edit
+    @properties = ["Rental","Owned","Leased"]
+    
   end
 
   def create
@@ -26,7 +32,7 @@ class ApplicantUsersController < ApplicationController
         format.html { redirect_to @applicant_user, notice: 'ApplicantUser was successfully created.' }
         format.json { render :show, status: :created, location: @applicant_user }
       else
-        format.html { render :new }
+        format.html { render :new, notice: 'ApplicantUser was not created.' }
         format.json { render json: @applicant_user.errors, status: :unprocessable_entity }
       end
     end
@@ -61,7 +67,7 @@ class ApplicantUsersController < ApplicationController
   end
 
   def applicant_user_params
-    params.require(:applicant_user).permit(:first_name, :last_name, :email, :phone_number, :aadhar_number, :area, :leader_id)
+    params.require(:applicant_user).permit(:first_name, :last_name, :email, :phone_number, :aadhar_number, :area, :leader_id, :property)
   end
 end
 

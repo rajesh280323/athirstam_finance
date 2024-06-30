@@ -7,6 +7,7 @@ class CreateApplicantUsers < ActiveRecord::Migration[7.1]
       t.string :phone_number
       t.string :area
       t.string :aadhar_number
+      t.string :property
       t.timestamps
 
       t.references :leader, null: true, foreign_key: true
