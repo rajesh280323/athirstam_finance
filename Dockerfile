@@ -1,6 +1,29 @@
+# Use the official Ruby image
+FROM ruby:3.0.0
 
-# You can change this to a newer version of MySQL available at
-# https://hub.docker.com/r/mysql/mysql-server/tags/
-FROM mysql/mysql-server:8.0.24
+# Set Rails environment to production
+ENV RAILS_ENV production
 
-COPY config/user.cnf /etc/mysql/my.cnf
+# Install dependencies
+RUN apt-get update && \
+    apt-get install -y nodejs npm yarn && \
+    npm install -g n && n stable && \
+    gem install rails bundler
+
+# Set working directory
+WORKDIR /app
+
+# Copy Gemfile and Gemfile.lock
+COPY Gemfile Gemfile.lock ./
+
+# Install gems
+RUN bundle install
+
+# Copy the rest of the application code
+COPY . .
+
+# Precompile assets
+RUN bundle exec rails assets:precompile
+
+# Start the Rails server
+CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]

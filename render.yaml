@@ -1,24 +1,31 @@
 services:
-  - type: pserv
-    name: mysql
-    plan: standard
+  - type: web
+    name: web
     env: docker
-    autoDeploy: true
+    dockerfilePath: Dockerfile  # Path to your Dockerfile if using Docker
+    envVars:
+      - key: RAILS_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: mysql  # Use the name of your MySQL database service
+          property: connectionString  # Render will provide this automatically
+    ports:
+      - port: 8080  # Port where your Rails application listens
+
+databases:
+  - name: mysql
+    plan: mysql  # Render's managed MySQL service
     disk:
       name: mysql
       mountPath: /var/lib/mysql
       sizeGB: 10
     envVars:
-      - fromGroup: mysql
-
-envVarGroups:
-  - name: mysql
-    envVars:
       - key: MYSQL_DATABASE
-        value: my_database
+        value: athirstam_finance  # Your MySQL database name
       - key: MYSQL_USER
-        value: my_user
+        generateValue: true  # Render will generate a username
       - key: MYSQL_PASSWORD
-        generateValue: true
+        generateValue: true  # Render will generate a password
       - key: MYSQL_ROOT_PASSWORD
-        generateValue: true
+        generateValue: true  # Render will generate a root password

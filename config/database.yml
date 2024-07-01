@@ -30,9 +30,8 @@ test:
 production:
   adapter: mysql2
   encoding: utf8
-  reconnect: false
-  database: athirstam_finance
   pool: 5
-  username: "athirstam_finance"
-  password: "Axes*g=h3dkAJyDd3La2RuBge4mecis"
-  host: 127.0.0.1
+  database: athirstam_finance
+  username: <%= ENV['MYSQL_USER'] %>
+  password: <%= ENV['MYSQL_PASSWORD'] %>
+  host: <%= ENV['MYSQL_HOST'] %>
