@@ -6,8 +6,9 @@ ENV RAILS_ENV production
 
 # Install dependencies
 RUN apt-get update && \
-    apt-get install -y nodejs npm yarn && \
-    npm install -g n && n stable && \
+    apt-get install -y \
+      # Add any additional packages needed here
+      && \
     gem install rails bundler
 
 # Set working directory
@@ -22,7 +23,7 @@ RUN bundle install
 # Copy the rest of the application code
 COPY . .
 
-# Precompile assets
+# Precompile assets (if needed)
 # RUN bundle exec rails assets:precompile
 
 # Start the Rails server
