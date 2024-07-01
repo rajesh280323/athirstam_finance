@@ -23,7 +23,7 @@ RUN bundle install
 COPY . .
 
 # Precompile assets
-RUN bundle exec rails assets:precompile
+# RUN bundle exec rails assets:precompile
 
 # Start the Rails server
 CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
