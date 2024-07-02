@@ -22,10 +22,10 @@ databases:
       sizeGB: 10
     envVars:
       - key: MYSQL_DATABASE
-        value: athirstam_finance  # Your MySQL database name
+        value: defaultdb  # Your MySQL database name
       - key: MYSQL_USER
-        generateValue: true  # Render will generate a username
+        generateValue: false  # Render will generate a username
       - key: MYSQL_PASSWORD
-        generateValue: true  # Render will generate a password
+        generateValue: false  # Render will generate a password
       - key: MYSQL_ROOT_PASSWORD
-        generateValue: true  # Render will generate a root password
+        generateValue: false  # Render will generate a root password

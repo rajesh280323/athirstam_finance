@@ -31,7 +31,7 @@ production:
   adapter: mysql2
   encoding: utf8
   port: 12693
-  database: "defaultdb"
-  username: "avnadmin"
-  password: "AVNS_dcLy9vZopoJEGjIBext"
-  host: "mysql-36ff7c21-rajeshkumar280323-489a.e.aivencloud.com"
+  database: defaultdb
+  username: <%= ENV['MYSQL_USER'] %>
+  password: <%= ENV['MYSQL_PASSWORD'] %>
+  host: <%= ENV['MYSQL_HOST'] %>
