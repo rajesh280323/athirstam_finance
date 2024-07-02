@@ -2,12 +2,12 @@
 FROM ruby:3.2.2
 
 # Set Rails environment to production
-ENV RAILS_ENV production
+# ENV RAILS_ENV production
+ENV RAILS_MASTER_KEY="c13ac86d29df65e5fc5baa413a9b90c6"
 
 # Install dependencies
 RUN apt-get update && \
     apt-get install -y \
-      # Add any additional packages needed here
       && \
     gem install rails bundler
 
