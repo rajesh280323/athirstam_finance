@@ -29,9 +29,6 @@ test:
 
 production:
   adapter: mysql2
-  encoding: utf8
-  port: 12693
-  database: defaultdb
-  username: <%= ENV['MYSQL_USER'] %>
-  password: <%= ENV['MYSQL_PASSWORD'] %>
-  host: <%= ENV['MYSQL_HOST'] %>
+  url: <%= ENV['DATABASE_URL'] %>
+  sslmode: verify-full  # Aiven MySQL requires SSL verification
+  sslca: path/to/ca.pem  # Path to CA certificate file, provided by Aiven
