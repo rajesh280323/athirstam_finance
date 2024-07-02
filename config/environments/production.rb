@@ -5,7 +5,6 @@ Rails.application.configure do
 
   # Code is not reloaded between requests.
   config.enable_reloading = false
-  Rails.application.config.hosts << "athirstamfinance.onrender.com"
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
@@ -23,7 +22,7 @@ Rails.application.configure do
   Rails.application.config.secret_key_base = Rails.application.credentials.secret_key_base
 
   # Disable serving static files from `public/`, relying on NGINX/Apache to do so instead.
-  # config.public_file_server.enabled = false
+  config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
 
   # Compress CSS using a preprocessor.
   # config.assets.css_compressor = :sass
@@ -90,10 +89,11 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # Enable DNS rebinding protection and other `Host` header attacks.
-  # config.hosts = [
+  config.hosts = [
+    "athirstamfinance.onrender.com"
   #   "example.com",     # Allow requests from example.com
   #   /.*\.example\.com/ # Allow requests from subdomains like `www.example.com`
-  # ]
+  ]
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 end
