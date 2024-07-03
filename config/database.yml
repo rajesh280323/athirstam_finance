@@ -6,26 +6,28 @@
 #
 development:
   adapter: mysql2
-  encoding: utf8
-  reconnect: false
-  database: mm_dev
-  pool: 5
-  username: root
-  password: 
-  host: 127.0.0.1
+  database: "defaultdb"
+  username: "avnadmin"
+  password: "AVNS_dcLy9vZopoJEGjIBext"
+  host: "mysql-36ff7c21-rajeshkumar280323-489a.e.aivencloud.com"
+  port: 12693  # Default MySQL port is 3306
+  charset: utf8mb4
+  collation: utf8mb4_unicode_ci
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   adapter: mysql2
-  encoding: utf8
-  reconnect: false
-  database: mm_test
-  pool: 5
-  username: root
-  password: "Axegh3kAJyDLaRuBemecis"
-  host: 127.0.0.1
+  database: "defaultdb"
+  username: "avnadmin"
+  password: "AVNS_dcLy9vZopoJEGjIBext"
+  host: "mysql-36ff7c21-rajeshkumar280323-489a.e.aivencloud.com"
+  port: 12693  # Default MySQL port is 3306
+  charset: utf8mb4
+  collation: utf8mb4_unicode_ci
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 # production:
 #   adapter: mysql2
