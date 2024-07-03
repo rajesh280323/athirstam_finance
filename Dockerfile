@@ -26,5 +26,9 @@ COPY . .
 # Precompile assets (if needed)
 # RUN bundle exec rails assets:precompile
 
+# Create and migrate the database
+RUN bundle exec rails db:create
+RUN bundle exec rails db:migrate
+
 # Start the Rails server
 CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
