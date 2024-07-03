@@ -35,10 +35,10 @@ test:
 
 production:
   adapter: mysql2
-  database: defaultdb
-  username: avnadmin
-  password: AVNS_dcLy9vZopoJEGjIBext
-  host: mysql-36ff7c21-rajeshkumar280323-489a.e.aivencloud.com
+  database: "defaultdb"
+  username: "avnadmin"
+  password: "AVNS_dcLy9vZopoJEGjIBext"
+  host: "mysql-36ff7c21-rajeshkumar280323-489a.e.aivencloud.com"
   port: 12693  # Default MySQL port is 3306
   charset: utf8mb4
   collation: utf8mb4_unicode_ci
