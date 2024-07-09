@@ -64,15 +64,15 @@ class LeadersController < ApplicationController
 
     Prawn::Document.generate(generate_pdf_filepath_filename, page_size: 'A4', margin: [30, 25, 30, 25]) do |pdf|
         puts leader_loan = leader.loans.where(status: :active).first
-
+        new_page = 0
         if leader_loan.present?
-          new_page = ''
+          new_page += 1
           applicant_name = "#{leader.first_name}.#{leader.last_name}"
           phone_number = leader.phone_number
           property = leader.property
           loan_amount = leader_loan.loan_amount
           collection_amount = leader_loan.weekly_collection_amount
-          no_of_weeks = leader.tenure_weeks
+          no_of_weeks = leader_loan.tenure_weeks
           current_address = ""
           gurantee_name = "Priya S"
           gurantee_phone_number = "7305539172"
@@ -82,7 +82,7 @@ class LeadersController < ApplicationController
        leader.applicant_users.each_with_index do |app_user, index|
          puts user_loan = app_user.loans.where(status: :active).first
           if user_loan.present?
-              new_page = true
+              new_page += 1
               applicant_name = "#{app_user.first_name}.#{app_user.last_name}"
               phone_number = app_user.phone_number
               property = app_user.property
@@ -103,7 +103,7 @@ class LeadersController < ApplicationController
 
 
   def write_to_pdf(new_page,pdf,applicant_name,phone_number,property,loan_amount,collection_amount,no_of_weeks,current_address,gurantee_name,gurantee_phone_number,gurantee_area)
-       pdf.start_new_page if new_page == true
+       pdf.start_new_page if new_page.to_i > 1
          pdf.move_down 20
          pdf.font_size 20
          pdf.text "ATHIRSTAM FINANCE", style: :bold, align: :center
