@@ -72,8 +72,8 @@ class LeadersController < ApplicationController
           property = leader.property
           loan_amount = leader_loan.loan_amount
           collection_amount = leader_loan.weekly_collection_amount
-          no_of_weeks = leader.property
-          current_address = leader.property
+          no_of_weeks = leader.tenure_weeks
+          current_address = ""
           gurantee_name = "Priya S"
           gurantee_phone_number = "7305539172"
           gurantee_area = ""
@@ -88,8 +88,8 @@ class LeadersController < ApplicationController
               property = app_user.property
               loan_amount = user_loan.loan_amount
               collection_amount = user_loan.weekly_collection_amount
-              no_of_weeks = user_loan.property
-              current_address = app_user.property
+              no_of_weeks = user_loan.tenure_weeks
+              current_address = ""
               gurantee_name = "#{app_user.leader.first_name}.#{app_user.leader.last_name}"
               gurantee_phone_number = app_user.leader.phone_number
               gurantee_area = app_user.leader.area.name
