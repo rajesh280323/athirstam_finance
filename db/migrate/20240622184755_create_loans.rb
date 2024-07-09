@@ -10,7 +10,7 @@ class CreateLoans < ActiveRecord::Migration[7.1]
       t.date :weekly_collection_date
       t.date :first_ewi_date
       t.date :loan_closing_date
-      t.boolean :status, default: true
+      t.integer :status, default: '0'
 
       t.timestamps
       t.references :leader, null: true, foreign_key: true
