@@ -42,7 +42,7 @@
                   <%= f.text_field :first_name, class: "form-control", placeholder:"John", required: true %>
 				</div>
 			</div>
-         <%= f.hidden_field :leader_id, value: @leader_id  %>
+         <%= f.hidden_field :leader_id, value: @leader.id  %>
 
 			<div class="form-group row">
 				<label class="col-sm-12 col-md-2 col-form-label">Last Name</label>
@@ -87,9 +87,9 @@
 				<label class="col-sm-12 col-md-2 col-form-label">Leader Name</label>
 				<div class="col-sm-12 col-md-10">
 					<% if @required == "New" %>
-					<%= f.collection_select :leader_id, Leader.all, :id, :first_name, { selected: @leader.id, prompt: "Select a Leader" }, { class: "form-control", required: true } %>
+					<%= f.collection_select :leader_id, Leader.all, :id, :first_name, { selected: @leader.id, prompt: "Select a Leader" }, { class: "form-control", readonly: true, disabled: true } %>
 					<% else %>
-					<%= f.collection_select :leader_id, Leader.all, :id, :first_name, {  prompt: "Select a Leader" }, { class: "form-control", required: true, disabled: true } %>
+					<%= f.collection_select :leader_id, Leader.all, :id, :first_name, {  prompt: "Select a Leader" }, { class: "form-control", readonly: true, disabled: true } %>
 					<% end %>
 
 				</div>

@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   resources :applicant_users
   resources :loans
 # resources :areas, only: [:index]
-
+  get '/leaders/:id/generate_pdf', to: 'leaders#generate_pdf', format: 'pdf'
   # Defines the root path route ("/")
   root "home#index"
 end

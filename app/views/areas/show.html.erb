@@ -6,6 +6,7 @@
             <div class="title" style="display: flex; justify-content: space-between; align-items: center;">
               <h4>Area Name: <span class="text-blue"><%= @area.name %></span></h4>
                <%= link_to areas_path, class: "btn btn-primary btn-sm" do %>Back<% end %>
+            <%= link_to 'New Leader', "/leaders/new?area=#{@area.id}", class: 'btn btn-primary btn-sm' %>
 
             </div>
          </div>

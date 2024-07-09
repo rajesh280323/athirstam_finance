@@ -73,3 +73,4 @@ gem 'activeadmin_json_editor', '~> 0.0.7'
 gem 'jquery-datatables-rails'
 gem 'ajax-datatables-rails'
 gem "jsbundling-rails", "~> 1.3"
+gem 'prawn'

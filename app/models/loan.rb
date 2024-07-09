@@ -3,6 +3,14 @@ class Loan < ApplicationRecord
   belongs_to :applicant_user, optional: true
   validate :leader_or_applicant_user_present
 
+  enum status: {
+    active: 0,
+    closed: 1
+  }
+
+  # Optional: Add a scope for querying active records
+  scope :active, -> { where(status: :active) }
+  
    private
 
   def leader_or_applicant_user_present

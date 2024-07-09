@@ -42,7 +42,7 @@ class ApplicantUsersController < ApplicationController
     respond_to do |format|
       if @applicant_user.update(applicant_user_params)
         format.html { redirect_to applicant_users_url, notice: 'ApplicantUser was successfully updated.' }
-      format.json { head :no_content }
+        format.json { head :no_content }
         
         # format.json { render :show, status: :ok, location: @applicant_user }
       else

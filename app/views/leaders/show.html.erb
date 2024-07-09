@@ -8,6 +8,7 @@
               <h4><span class="text-blue h4">Leader Page</span></h4>
               <a class="btn btn-primary btn-sm pull-right" href="<%= new_loan_path(leader_id: @leader.id) %>">New Leader Loan</a>
               <a class="btn btn-primary btn-sm pull-right" href="<%= new_applicant_user_path(leader_id: @leader.id) %>">New Applicant User</a>
+              <a class="btn btn-info btn-sm" href=<%="/leaders/#{@leader.id}/generate_pdf"%>>Download Form</a>
             </div>
          </div>
       </div>
