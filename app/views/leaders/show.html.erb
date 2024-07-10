@@ -7,8 +7,8 @@
             <div class="title" style="display: flex; justify-content: space-between; align-items: center;">
               <h4><span class="text-blue h4">Leader Page</span></h4>
               <a class="btn btn-primary btn-sm pull-right" href="<%= new_loan_path(leader_id: @leader.id) %>">New Leader Loan</a>
-              <a class="btn btn-primary btn-sm pull-right" href="<%= new_applicant_user_path(leader_id: @leader.id) %>">New Applicant User</a>
-              <a class="btn btn-info btn-sm" href=<%="/leaders/#{@leader.id}/generate_pdf"%>>Download Form</a>
+              <a class="btn btn-primary btn-sm" href="<%= new_applicant_user_path(leader_id: @leader.id) %>">New Applicant</a>
+              <a class="btn btn-success btn-sm" href=<%="/leaders/#{@leader.id}/generate_pdf"%>>Download Form</a>
             </div>
          </div>
       </div>
@@ -37,23 +37,39 @@
          </div>
       
          <div class="form-group row">
-           <label class="col-md-2"  style="white-space: pre;">First name           : <span class="" >  <%= @leader.first_name %></span></label>
+           <label class="col-md-2"  style="white-space: pre;">First Name                          : <span class="" >  <%= @leader.first_name %></span></label>
          </div>
          <div class="form-group row">
-           <label class="col-md-2"  style="white-space: pre;">Last name            : <span class="" >  <%= @leader.last_name %></span></label>
+           <label class="col-md-2"  style="white-space: pre;">Last Name                          : <span class="" >  <%= @leader.last_name %></span></label>
          </div>
          <div class="form-group row">
-           <label class="col-md-2"  style="white-space: pre;">Email                     : <span class="" >  <%= @leader.email %></span></label>
+           <label class="col-md-2"  style="white-space: pre;">Husband/Father's Name  : <span class="" >  <%= @leader.husband_name %></span></label>
          </div>
          <div class="form-group row">
-           <label class="col-md-2"  style="white-space: pre;">Phone no              : <span class="" >  <%= @leader.phone_number %></span></label>
+           <label class="col-md-2"  style="white-space: pre;">Email                                    : <span class="" >  <%= @leader.email %></span></label>
          </div>
          <div class="form-group row">
-           <label class="col-md-2"  style="white-space: pre;">Area Name           : <span class="" >  <%= @leader.area.name %></span></label>
+           <label class="col-md-2"  style="white-space: pre;">Family Card Number         : <span class="" >  <%= @leader.family_card_number %></span></label>
          </div>
          <div class="form-group row">
-           <label class="col-md-2"  style="white-space: pre;">Property Status   : <span class="" >  <%= @leader.property %></span></label>
+           <label class="col-md-2"  style="white-space: pre;">Phone no                             : <span class="" >  <%= @leader.phone_number %></span></label>
          </div>
+         <div class="form-group row">
+           <label class="col-md-2"  style="white-space: pre;">Property Status                  : <span class="" >  <%= @leader.property %></span></label>
+         </div>
+         <div class="form-group row">
+           <label class="col-md-2"  style="white-space: pre;">Street Name                        : <span class="" >  <%= @leader.street_name %></span></label>
+         </div>
+         <div class="form-group row">
+           <label class="col-md-2"  style="white-space: pre;">Area Name                           : <span class="" >  <%= @leader.area.name %></span></label>
+         </div>
+         <div class="form-group row">
+           <label class="col-md-2"  style="white-space: pre;">City                                        : <span class="" >  <%= @leader.city %></span></label>
+         </div>
+         <div class="form-group row">
+           <label class="col-md-2"  style="white-space: pre;">Pincode                                 : <span class="" >  <%= @leader.pincode %></span></label>
+         </div>
+         
 
      </div>
    <!-- Responsive tables End -->

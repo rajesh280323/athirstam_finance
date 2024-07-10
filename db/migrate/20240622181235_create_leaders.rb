@@ -7,6 +7,11 @@ class CreateLeaders < ActiveRecord::Migration[7.1]
       t.string :phone_number
       t.string :aadhar_number
       t.string :property
+      t.string :husband_name
+      t.string :family_card_number
+      t.string :street_name
+      t.string :city
+      t.integer :pincode
       t.timestamps
       t.references :area, null: true, foreign_key: true
     end

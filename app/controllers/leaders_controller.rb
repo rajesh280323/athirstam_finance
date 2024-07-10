@@ -23,7 +23,7 @@ class LeadersController < ApplicationController
   end
 
   def edit
-    @title = "Edit Leader"
+    @title = "Edit Leader Profile"
     @properties = ["Rental","Owned","Leased"]
   end
 
@@ -60,7 +60,7 @@ class LeadersController < ApplicationController
     FileUtils.mkdir_p(File.dirname(generate_pdf_filepath))
     # Now create generate_pdf_filepath if it doesn't exist
     Dir.mkdir(generate_pdf_filepath) unless Dir.exist?(generate_pdf_filepath)
-    generate_pdf_filepath_filename = "#{generate_pdf_filepath}/loan_agreement_#{Time.now.strftime("%d_%m_%Y")}.pdf"
+    generate_pdf_filepath_filename = "#{generate_pdf_filepath}/#{leader.area.name.downcase}_loan_agreement_#{Time.now.strftime("%d_%m_%Y")}.pdf"
 
     Prawn::Document.generate(generate_pdf_filepath_filename, page_size: 'A4', margin: [30, 25, 30, 25]) do |pdf|
         puts leader_loan = leader.loans.where(status: :active).first
@@ -73,11 +73,17 @@ class LeadersController < ApplicationController
           loan_amount = leader_loan.loan_amount
           collection_amount = leader_loan.weekly_collection_amount
           no_of_weeks = leader_loan.tenure_weeks
-          current_address = ""
-          gurantee_name = "Priya S"
+          gurantee_name = "S.Priya"
           gurantee_phone_number = "7305539172"
           gurantee_area = ""
-          write_to_pdf(new_page,pdf,applicant_name,phone_number,property,loan_amount,collection_amount,no_of_weeks,current_address,gurantee_name,gurantee_phone_number,gurantee_area)
+          gurantee_husband_name = ""
+          gurantee_aadhar_no = ""
+          husband_name = leader.husband_name
+          aadhar_number = leader.aadhar_number
+          family_card_number = leader.family_card_number
+          current_address1 = "#{leader.street_name}, #{leader.area.name},"
+          current_address2 = "#{leader.city}, #{leader.pincode}"
+          write_to_pdf(new_page,pdf,applicant_name,gurantee_husband_name,gurantee_aadhar_no,husband_name,aadhar_number,family_card_number,phone_number,property,loan_amount,collection_amount,no_of_weeks,current_address1,current_address2,gurantee_name,gurantee_phone_number,gurantee_area)
         end
        leader.applicant_users.each_with_index do |app_user, index|
          puts user_loan = app_user.loans.where(status: :active).first
@@ -89,46 +95,54 @@ class LeadersController < ApplicationController
               loan_amount = user_loan.loan_amount
               collection_amount = user_loan.weekly_collection_amount
               no_of_weeks = user_loan.tenure_weeks
-              current_address = ""
-              gurantee_name = "#{app_user.leader.first_name}.#{app_user.leader.last_name}"
+              gurantee_name = "#{app_user.leader.last_name}.#{app_user.leader.first_name}"
               gurantee_phone_number = app_user.leader.phone_number
+              gurantee_husband_name = app_user.leader.husband_name
+              gurantee_aadhar_no = app_user.leader.aadhar_number
               gurantee_area = app_user.leader.area.name
-            write_to_pdf(new_page,pdf,applicant_name,phone_number,property,loan_amount,collection_amount,no_of_weeks,current_address,gurantee_name,gurantee_phone_number,gurantee_area)
+              husband_name = app_user.husband_name
+              aadhar_number = app_user.aadhar_number
+              family_card_number = app_user.family_card_number
+              current_address1 = "#{app_user.street_name}, #{app_user.area},"
+              current_address2 = "#{app_user.city}, #{app_user.pincode}"
+            write_to_pdf(new_page,pdf,applicant_name,gurantee_husband_name,gurantee_aadhar_no,husband_name,aadhar_number,family_card_number,phone_number,property,loan_amount,collection_amount,no_of_weeks,current_address1,current_address2,gurantee_name,gurantee_phone_number,gurantee_area)
           end
        end
     end
 
-    send_file generate_pdf_filepath_filename, type: 'application/pdf', disposition: 'attachment'
+    send_file generate_pdf_filepath_filename, type: 'application/pdf', disposition: 'document'
   end
 
 
-  def write_to_pdf(new_page,pdf,applicant_name,phone_number,property,loan_amount,collection_amount,no_of_weeks,current_address,gurantee_name,gurantee_phone_number,gurantee_area)
+  def write_to_pdf(new_page,pdf,applicant_name,gurantee_husband_name,gurantee_aadhar_no,husband_name,aadhar_number,family_card_number,phone_number,property,loan_amount,collection_amount,no_of_weeks,current_address1,current_address2,gurantee_name,gurantee_phone_number,gurantee_area)
        pdf.start_new_page if new_page.to_i > 1
-         pdf.move_down 20
+         pdf.move_down 15
          pdf.font_size 20
          pdf.text "ATHIRSTAM FINANCE", style: :bold, align: :center
-         pdf.move_down 30
+         pdf.move_down 25
          pdf.font_size 11
           pdf.text "1. Applicant's name                   : #{applicant_name}", indent_paragraphs: 13
-          pdf.move_down 18
-          pdf.text "2. Husband/Father's name        : ", indent_paragraphs: 13
-          pdf.move_down 18
-          pdf.text "3. Applicant's Aadhaar number : ", indent_paragraphs: 13
-          pdf.move_down 18
-          pdf.text "4. Family card number               : ", indent_paragraphs: 13
-          pdf.move_down 18
+          pdf.move_down 16
+          pdf.text "2. Husband/Father's name        : #{husband_name}", indent_paragraphs: 13
+          pdf.move_down 16
+          pdf.text "3. Applicant's Aadhaar number : #{aadhar_number}", indent_paragraphs: 13
+          pdf.move_down 16
+          pdf.text "4. Family card number               : #{family_card_number}", indent_paragraphs: 13
+          pdf.move_down 16
           pdf.text "5. Phone number                       : #{phone_number}", indent_paragraphs: 13
-          pdf.move_down 18
+          pdf.move_down 16
           pdf.text "6. Residence status                   : #{property}", indent_paragraphs: 13
-          pdf.move_down 18
+          pdf.move_down 16
           pdf.text "7. Loan amount                          : #{loan_amount}", indent_paragraphs: 13
-          pdf.move_down 18
+          pdf.move_down 16
           pdf.text "8. Weekly collection amount      : #{collection_amount}", indent_paragraphs: 13
-          pdf.move_down 18
+          pdf.move_down 16
           pdf.text "9. Number of weeks                   : #{no_of_weeks}", indent_paragraphs: 13
-          pdf.move_down 18
-          pdf.text "10. Current address                     : #{current_address}", indent_paragraphs: 8
-          pdf.move_down 18
+          pdf.move_down 16
+          pdf.text "10. Current address                     : #{current_address1}", indent_paragraphs: 8
+          pdf.move_down 5
+          pdf.text "#{current_address2}", indent_paragraphs: 178
+          pdf.move_down 16
           pdf.text "11. I agree to repay this loan in due installments subject to their company's legal plans.", indent_paragraphs: 8
           pdf.move_down 35
           pdf.text "Applicant's Husband Signature                                                                      Applicant's Signature", indent_paragraphs: 27
@@ -137,9 +151,9 @@ class LeadersController < ApplicationController
           pdf.move_down 8
           pdf.text "I.   Leader Name        : #{gurantee_name}", indent_paragraphs: 29
           pdf.move_down 8
-          pdf.text "II.  Husband Name     : ", indent_paragraphs: 28
+          pdf.text "II.  Husband Name     : #{gurantee_husband_name}", indent_paragraphs: 28
           pdf.move_down 8
-          pdf.text "III. Aadhaar Number   : ", indent_paragraphs: 28
+          pdf.text "III. Aadhaar Number   : #{gurantee_aadhar_no}", indent_paragraphs: 28
           pdf.move_down 8
           pdf.text "IV.  Phone Number     : #{gurantee_phone_number}", indent_paragraphs: 28
           pdf.move_down 20
@@ -167,7 +181,7 @@ class LeadersController < ApplicationController
             pdf.stroke_bounds
           end
          pdf.stroke_bounds
-         pdf.move_down 18
+         pdf.move_down 16
   end
 
   # def destroy
@@ -185,6 +199,6 @@ class LeadersController < ApplicationController
   end
 
   def leader_params
-    params.require(:leader).permit(:first_name, :last_name, :email, :phone_number, :aadhar_number, :area_id, :property)
+    params.require(:leader).permit(:first_name, :last_name, :husband_name, :family_card_number, :street_name, :city, :pincode, :email, :phone_number, :aadhar_number, :area_id, :property)
   end
 end
