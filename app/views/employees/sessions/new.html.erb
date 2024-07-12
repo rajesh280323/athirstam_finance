@@ -141,4 +141,11 @@
       </div>
     </div>
      
-      
+<script>
+  if (window.history && window.history.pushState) {
+    window.history.pushState('forward', null, '');
+  }
+  $(window).on('popstate', function() {
+    window.location.href = "<%= new_employee_session_path %>";
+  });
+</script>
